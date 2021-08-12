@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oozsertt <oozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 11:38:30 by oozsertt          #+#    #+#             */
-/*   Updated: 2021/08/12 14:32:34 by oozsertt         ###   ########.fr       */
+/*   Created: 2021/06/14 17:30:10 by oozsertt          #+#    #+#             */
+/*   Updated: 2021/07/30 15:26:18 by oozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int	ft_printf(const char *form, ...)
+void	ft_putstr(char *str)
 {
-	t_data	data_list;
-	va_list	list;
-	int		i;
+	int	i;
 
-	va_start(list, form);
 	i = 0;
-	data_list.count = 0;
-	while (form[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (form[i] == '%')
-		{
-			i++;
-			set_data(&data_list);
-			i = parse_conversion(&data_list, form, i);
-			ft_convert_and_print(list, &data_list);
-		}
-		else
-		{
-			ft_putchar(form[i]);
-			data_list.count++;
-		}
+		ft_putchar(str[i]);
 		i++;
 	}
-	va_end(list);
-	return (data_list.count);
 }
